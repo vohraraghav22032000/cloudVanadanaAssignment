@@ -1,0 +1,67 @@
+Q1 . Take a sentence as an input and reverse every word in that sentence.
+
+function reverseIndividualWords(sentence) {
+    let words = [];
+    let currentWord = '';
+    let reversedSentence = '';
+
+    for (let i = 0; i < sentence.length; i++) {
+        const char = sentence[i];
+
+        if (char === ' ' || i === sentence.length - 1) {
+            if (i === sentence.length - 1) {
+                currentWord += char;
+            }
+
+            let reversedWord = '';
+            for (let j = currentWord.length - 1; j >= 0; j--) {
+                reversedWord += currentWord[j];
+            }
+
+            words.push(reversedWord);
+            currentWord = '';
+        } else {
+            currentWord += char;
+        }
+    }
+
+    for (let word of words) {
+        reversedSentence += word + ' ';
+    }
+
+    return reversedSentence;
+}
+
+const str = 'cloud vandana assignment';
+const reversedStr = reverseIndividualWords(str);
+console.log(reversedStr);
+
+
+Q2 . Perform sorting of an array in descending order.
+
+function selectionSortDescending(arr) {
+    const n = arr.length;
+
+    for (let i = 0; i < n - 1; i++) {
+        let maxIndex = i;
+
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] > arr[maxIndex]) {
+                maxIndex = j;
+            }
+        }
+
+        if (maxIndex !== i) {
+            // Swap arr[i] and arr[maxIndex]
+            const temp = arr[i];
+            arr[i] = arr[maxIndex];
+            arr[maxIndex] = temp;
+        }
+    }
+
+    return arr;
+}
+
+const inputArray = [5, 2, 9, 1, 5, 6];
+const sortedArray = selectionSortDescending(inputArray);
+console.log(sortedArray);

@@ -1,0 +1,111 @@
+Assignment 1 for java
+Q1 . Create the array with values {1,2,3,4,5,6,7} and shuffle it.
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class ShuffleArray {
+
+	 public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        shuffleArray(array);
+        
+        for (int element : array) {
+            System.out.print(element + " ");
+        }
+    }
+
+    public static void shuffleArray(int[] array) {
+        int n = array.length;
+        for (int i = n - 1; i > 0; i--) {
+            // Use Math.random() to get a random index
+            int j = (int) (Math.random() * (i + 1)); 
+            // Swap array[i] and array[j]
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+}
+
+
+Q2 . B. Enter Roman Number as input and convert it to integer. (ex IX = 9)
+import java.util.Scanner;
+
+class Solution {
+    public int romanToInt(String s) {
+         int ans = 0, num = 0;
+
+      for(int i = s.length() - 1; i >= 0; i --) {
+
+        switch(s.charAt(i)) {
+
+          case 'I' : num = 1; break;
+
+          case 'V' : num = 5; break;
+
+          case 'X' : num = 10; break;
+
+          case 'L' : num = 50; break;
+
+          case 'C' : num = 100; break;
+
+          case 'D' : num = 500; break;
+
+          case 'M' : num = 1000; break;
+
+        }
+
+        if(4 * num < ans) ans -= num;
+
+        else ans += num;
+
+      }
+
+      return ans;
+    }
+
+	public static void main(String[] args) {
+		
+		//Enter string as input
+		Scanner scn = new Scanner(System.in);
+ 		String str = scn.next();
+		System.out.println(romanToInt(str));
+	}
+}
+
+
+q3. Check if the input is pangram or not. (Pangram is a sentence that contains all the alphabets from a-z)
+import java.util.Scanner;
+
+class Solution {
+
+	public static void main(String[] args) {
+		
+		//Enter string as input
+		Scanner scn = new Scanner(System.in);
+ 		String str = scn.next();
+
+		int arr[] = new int[26];
+		for(int i=0;i<str.length;i++){
+			int val = str.charAt(i) - 'a';
+			arr[val]++;
+		}
+		boolean flag = true;
+
+		//if any value of array is zero then string is not panagram
+		for(int i=0;i<26;i++){
+			if(arr[i]==0){
+				flag = false;
+				break;
+			}
+		}
+                
+		if(flag==false)
+			System.out.println("String is not panagram);
+		else
+			System.out.println("String is panagram);
+	}
+}
+
+
